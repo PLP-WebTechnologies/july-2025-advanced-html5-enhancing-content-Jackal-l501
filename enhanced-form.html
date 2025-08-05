@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Content & Forms Mastery</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: var(--light);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(44, 62, 80, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+        
+        .card {
+            background: rgba(52, 73, 94, 0.7);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        /* Lists Styles */
+        .list-container {
+            background: rgba(26, 37, 47, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .list-container h3 {
+            color: var(--secondary);
+            margin: 15px 0 10px;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        dt {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-top: 10px;
+        }
+        
+        dd {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(26, 37, 47, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(236, 240, 241, 0.1);
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(52, 73, 94, 0.3);
+        }
+        
+        tr:hover {
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        /* Media Styles */
+        .media-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .media-item {
+            background: rgba(26, 37, 47, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .media-item h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        audio, video {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+        
+        /* Form Styles */
+        .form-section {
+            padding: 30px;
+            background: rgba(26, 37, 47, 0.9);
+            border-top: 3px solid var(--secondary);
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        fieldset {
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        legend {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 0 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            border-radius: 6px;
+            background: rgba(44, 62, 80, 0.7);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.3);
+        }
+        
+        input[type="color"] {
+            height: 50px;
+            padding: 5px;
+        }
+        
+        input[type="range"] {
+            height: 10px;
+        }
+        
+        .btn-container {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        
+        button[type="reset"] {
+            background: var(--accent);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Validation styles */
+        input:invalid, select:invalid, textarea:invalid {
+            border-color: var(--accent);
+        }
+        
+        input:valid, select:valid, textarea:valid {
+            border-color: var(--secondary);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            form {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HTML5 Content & Forms Mastery</h1>
+            <p class="subtitle">This assignment showcases advanced HTML5 content elements including lists, tables, and media, along with a comprehensive form demonstrating native validation techniques.</p>
+        </header>
+        
+        <div class="content-grid">
+            <!-- Lists Section -->
+            <div class="card">
+                <h2>HTML Lists Showcase</h2>
+                <div class="list-container">
+                    <h3>Unordered List (Programming Languages)</h3>
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>C#</li>
+                        <li>PHP</li>
+                    </ul>
+                    
+                    <h3>Ordered List (Web Development Steps)</h3>
+                    <ol>
+                        <li>Planning & Analysis</li>
+                        <li>Design & Wireframing</li>
+                        <li>Frontend Development</li>
+                        <li>Backend Development</li>
+                        <li>Testing & Deployment</li>
+                    </ol>
+                    
+                    <h3>Description List (HTML5 Terms)</h3>
+                    <dl>
+                        <dt>Semantic Elements</dt>
+                        <dd>Elements like &lt;header&gt;, &lt;footer&gt;, and &lt;article&gt; that clearly define their content.</dd>
+                        
+                        <dt>Canvas</dt>
+                        <dd>An element used to draw graphics via scripting (usually JavaScript).</dd>
+                        
+                        <dt>LocalStorage</dt>
+                        <dd>A web storage object that stores data with no expiration date.</dd>
+                    </dl>
+                </div>
+            </div>
+            
+            <!-- Tables Section -->
+            <div class="card">
+                <h2>HTML Tables Showcase</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Framework</th>
+                            <th>Language</th>
+                            <th>Popularity</th>
+                            <th>Release Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>React</td>
+                            <td>JavaScript</td>
+                            <td>High</td>
+                            <td>2013</td>
+                        </tr>
+                        <tr>
+                            <td>Angular</td>
+                            <td>TypeScript</td>
+                            <td>High</td>
+                            <td>2016</td>
+                        </tr>
+                        <tr>
+                            <td>Vue.js</td>
+                            <td>JavaScript</td>
+                            <td>High</td>
+                            <td>2014</td>
+                        </tr>
+                        <tr>
+                            <td>Django</td>
+                            <td>Python</td>
+                            <td>Medium</td>
+                            <td>2005</td>
+                        </tr>
+                        <tr>
+                            <td>Laravel</td>
+                            <td>PHP</td>
+                            <td>Medium</td>
+                            <td>2011</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Media Section -->
+            <div class="card">
+                <h2>HTML Media Showcase</h2>
+                <div class="media-container">
+                    <div class="media-item">
+                        <h3>Image Element</h3>
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="HTML Code on Screen">
+                    </div>
+                    
+                    <div class="media-item">
+                        <h3>Audio Element</h3>
+                        <audio controls>
+                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    
+                    <div class="media-item">
+                        <h3>Video Element</h3>
+                        <video controls>
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--secondary);">HTML5 Form with Native Validation</h2>
+            <div class="form-container">
+                <form id="registrationForm" novalidate>
+                    <fieldset>
+                        <legend>Personal Information</legend>
+                        
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required 
+                                   placeholder="Enter your full name" 
+                                   minlength="3" maxlength="50">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="your.email@example.com"
+                                   autocomplete="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" 
+                                   placeholder="(123) 456-7890"
+                                   pattern="\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" min="1900-01-01" max="2023-12-31">
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>Account Details</legend>
+                        
+                        <div class="form-group">
+                            <label for="username">Username *</label>
+                            <input type="text" id="username" name="username" required 
+                                   placeholder="Choose a username" 
+                                   minlength="4" maxlength="20">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input type="password" id="password" name="password" required 
+                                   placeholder="Create a strong password"
+                                   minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                            <small>Must contain at least one number, one uppercase and lowercase letter</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="website">Personal Website</label>
+                            <input type="url" id="website" name="website" 
+                                   placeholder="https://example.com">
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>Preferences</legend>
+                        
+                        <div class="form-group">
+                            <label>Favorite Browser</label>
+                            <select name="browser" required>
+                                <option value="" disabled selected>Select a browser</option>
+                                <option value="chrome">Google Chrome</option>
+                                <option value="firefox">Mozilla Firefox</option>
+                                <option value="safari">Apple Safari</option>
+                                <option value="edge">Microsoft Edge</option>
+                                <option value="opera">Opera</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Programming Experience</label>
+                            <div>
+                                <input type="checkbox" id="html" name="experience" value="html">
+                                <label for="html" style="display: inline; margin-left: 5px;">HTML</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="css" name="experience" value="css">
+                                <label for="css" style="display: inline; margin-left: 5px;">CSS</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="js" name="experience" value="js">
+                                <label for="js" style="display: inline; margin-left: 5px;">JavaScript</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Subscription Plan *</label>
+                            <div>
+                                <input type="radio" id="free" name="plan" value="free" required>
+                                <label for="free" style="display: inline; margin-left: 5px;">Free</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="pro" name="plan" value="pro">
+                                <label for="pro" style="display: inline; margin-left: 5px;">Pro ($9.99/month)</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="enterprise" name="plan" value="enterprise">
+                                <label for="enterprise" style="display: inline; margin-left: 5px;">Enterprise ($29.99/month)</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" name="bio" 
+                                      placeholder="Tell us about yourself..."
+                                      minlength="10" maxlength="500"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="avatar">Profile Picture</label>
+                            <input type="file" id="avatar" name="avatar" accept="image/*">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="color">Favorite Color</label>
+                            <input type="color" id="color" name="color" value="#3498db">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volume">Volume Preference</label>
+                            <input type="range" id="volume" name="volume" min="0" max="100" value="50">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="search">Search</label>
+                            <input type="search" id="search" name="search" 
+                                   placeholder="Search...">
+                        </div>
+                    </fieldset>
+                    
+                    <div class="btn-container">
+                        <button type="reset">Reset Form</button>
+                        <button type="submit">Submit Registration</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <footer>
+            <p>HTML5 Content & Forms Showcase | Created for Educational Purposes | &copy; 2023</p>
+            <p>All form validation is implemented using native HTML5 features without JavaScript</p>
+        </footer>
+    </div>
+</body>
+</html>
